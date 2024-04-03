@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.buyer.dao.BuyerDAO">
+
+	<resultMap type="BuyerVO" id="buyerMap" autoMapping="true">
+		<id property="buyerId" column="BUYER_ID"/>
+		<association property="lprod" javaType="LprodVO" autoMapping="true"/>
+		<collection property="prodList" ofType="ProdVO" autoMapping="true"/>
+	</resultMap>
+	
+	<select id="selectBuyerList" resultMap="buyerMap">
+		WITH PROD_VIEW AS (
+			SELECT PROD_BUYER, COUNT(PROD_ID) PROD_COUNT
+            FROM PROD
+            GROUP BY PROD_BUYER
+		), BUYER_VIEW AS (
+			SELECT *
+			FROM BUYER INNER JOIN LPROD ON (BUYER_LGU = LPROD_GU)
+		)
+		
+		SELECT
+		     BUYER_ID
+		    ,BUYER_NAME
+		    ,BUYER_LGU
+		    ,BUYER_ADD1
+		    ,BUYER_CHARGER
+		    ,BUYER_COMTEL
+		    ,LPROD_NM
+		    ,NVL(PROD_COUNT,0) PROD_COUNT
+		FROM BUYER_VIEW LEFT OUTER JOIN PROD_VIEW ON(BUYER_ID = PROD_BUYER)
+	</select>
+	
+	<select id="selectBuyer" parameterType="String" resultMap="buyerMap">
+	<!-- 거래처의 기본정보, 바이어(분류명), 거래품목(상품코드, 상품명, 구매가, 판매가, 마일리지) -->
+			SELECT
+			     BUYER.*
+			    ,LPROD.*
+			    ,PROD.*
+			FROM BUYER INNER JOIN LPROD ON (BUYER_LGU = LPROD_GU)
+			           LEFT OUTER JOIN PROD ON(BUYER_ID = PROD_BUYER)
+			WHERE BUYER_ID = #{buyerId}
+	</select>
+</mapper>
