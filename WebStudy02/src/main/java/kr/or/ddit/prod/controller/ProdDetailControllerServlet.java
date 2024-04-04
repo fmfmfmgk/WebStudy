@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.ddit.exception.ResponseStatusException;
+import kr.or.ddit.mvc.ViewResolverComposite;
 import kr.or.ddit.prod.service.ProdService;
 import kr.or.ddit.prod.service.ProdServiceImpl;
 import kr.or.ddit.vo.ProdVO;
@@ -35,16 +36,7 @@ public class ProdDetailControllerServlet extends HttpServlet{
 		req.setAttribute("prod", prod);
 		
 //		3. view로 이동
-		String viewName = "/WEB-INF/views/prod/prodDetail.jsp";
-		
-		if(viewName.startsWith("redirect:")) {
-			String location = viewName.replace("redirect:", req.getContextPath());
-			resp.sendRedirect(location);
-		}else if(viewName.startsWith("forward:")){
-			String path = viewName.substring("forward:".length()); 
-			req.getRequestDispatcher(path).forward(req, resp);
-		}else {
-			req.getRequestDispatcher(viewName).forward(req, resp);
-		}
+		String viewName = "prod/prodDetail";
+		new ViewResolverComposite().resolveView(viewName, req, resp);
 	}
 }

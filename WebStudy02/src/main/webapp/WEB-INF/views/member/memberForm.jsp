@@ -9,26 +9,24 @@
 <jsp:include page="/WEB-INF/includee/prescript.jsp" />
 </head>
 <body>
-	<form
-		action="${pageContext.request.contextPath}/member/memberInsert.do"
-		method="post">
+	<form method="post" enctype="application/x-www-form-urlencoded">
 		<table class="table table-bordered">
 			<tr>
 			<tr>
 				<th>회원번호</th>
-				<td><input type="text" name="memId" required
+				<td><input type="text" name="memId" 
 					value="${member.memId}" class="form-control" /><span
 					class="text-danger">${errors.memId}</span></td>
 			</tr>
 			<tr>
 				<th>암호</th>
-				<td><input type="password" name="memPass" required
+				<td><input type="password" name="memPass" 
 					value="" class="form-control" /><span
 					class="text-danger">${errors.memPass}</span></td>
 			</tr>
 			<tr>
 				<th>회원명</th>
-				<td><input type="text" name="memName" required
+				<td><input type="text" name="memName" 
 					value="${member.memName}" class="form-control" /><span
 					class="text-danger">${errors.memName}</span></td>
 			</tr>
@@ -51,19 +49,19 @@
 			</tr>
 			<tr>
 				<th>우편번호</th>
-				<td><input type="text" name="memZip" required
+				<td><input type="text" name="memZip" 
 					value="${member.memZip}" class="form-control" /><span
 					class="text-danger">${errors.memZip}</span></td>
 			</tr>
 			<tr>
 				<th>기본주소</th>
-				<td><input type="text" name="memAdd1" required
+				<td><input type="text" name="memAdd1" 
 					value="${member.memAdd1}" class="form-control" /><span
 					class="text-danger">${errors.memAdd1}</span></td>
 			</tr>
 			<tr>
 				<th>상세주소</th>
-				<td><input type="text" name="memAdd2" required
+				<td><input type="text" name="memAdd2" 
 					value="${member.memAdd2}" class="form-control" /><span
 					class="text-danger">${errors.memAdd2}</span></td>
 			</tr>
@@ -86,7 +84,7 @@
 			</tr>
 			<tr>
 				<th>메일주소</th>
-				<td><input type="text" name="memMail" required
+				<td><input type="text" name="memMail" 
 					value="${member.memMail}" class="form-control" /><span
 					class="text-danger">${errors.memMail}</span></td>
 			</tr>

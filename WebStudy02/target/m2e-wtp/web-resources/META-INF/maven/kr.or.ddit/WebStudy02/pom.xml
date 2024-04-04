@@ -42,6 +42,7 @@
 		    <version>3.1.0</version>
 		    <scope>provided</scope><!-- 개발할때는 사용하지만 배포할떄는 버리로 감(배포때는 톰캣에서 jar파일을 가져와서 사용)  -->
 		</dependency>
+		
 		<!-- View Layer 지원용 -->
 		<dependency>
 		    <groupId>javax.servlet.jsp</groupId>
@@ -59,7 +60,6 @@
 		    <artifactId>jstl</artifactId>
 		    <version>1.2</version>
 		</dependency>
-
 			
 		<!-- 데이터베이스 연결용 -->
 		<dependency>
@@ -67,7 +67,6 @@
 		    <artifactId>ojdbc8</artifactId>
 		    <version>21.13.0.0</version>
 		</dependency>
-
 		
 		<!-- Connection Pooling 지원용 -->
 		<dependency>
@@ -81,12 +80,14 @@
 		    	</exclusion>
 		    </exclusions>
 		</dependency>
+		
 		<!-- SQL Mapper, Data Mapper, Persistence framework, ORM-->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis</artifactId>
 		    <version>3.5.15</version>
 		</dependency>
+		
 		<!-- Commens 계열 -->
 		<dependency>
 		    <groupId>org.apache.commons</groupId>
@@ -104,18 +105,21 @@
 		    	</exclusion>
 		    </exclusions>
 		</dependency>
+		
 		<!-- JSON 마샬링 지원용 -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
 		    <version>${com.fasterxml.jackson-version}</version>
 		</dependency>
+		
 		<!-- XML 마샬링 지원용 -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.dataformat</groupId>
 		    <artifactId>jackson-dataformat-xml</artifactId>
 		    <version>${com.fasterxml.jackson-version}</version>
 		</dependency>
+		
 		<!-- JavaBean 규약 지원용 -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -123,6 +127,19 @@
 			<version>1.18.32</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		<!-- 도메인 레이어 검증 지원용 -->
+		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>6.2.5.Final</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.glassfish</groupId>
+		    <artifactId>jakarta.el</artifactId>
+		    <version>3.0.3</version>
+		</dependency>
+		
 		<!-- logging 지원용 -->
 		<dependency><!-- 실제 사용역할 -->
 	  		<groupId>org.apache.logging.log4j</groupId>

@@ -46,9 +46,7 @@ public class MemberDAOImpl implements MemberDAO {
 		try (
 			SqlSession session = factory.openSession();
 		){
-//			int rowcnt = session.insert("kr.or.ddit.member.dao.MemberDAO.insertMember", member);
 			int rowcnt = session.getMapper(MemberDAO.class).insertMember(member);
-			
 			if(rowcnt >=0) {
 				session.commit();
 			}

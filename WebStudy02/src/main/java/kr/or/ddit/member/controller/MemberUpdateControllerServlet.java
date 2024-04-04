@@ -3,6 +3,7 @@ package kr.or.ddit.member.controller;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 import kr.or.ddit.enumpkg.ServiceResult;
 import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
+import kr.or.ddit.utils.ValidateUtils;
 import kr.or.ddit.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -65,9 +67,9 @@ public class MemberUpdateControllerServlet extends HttpServlet{
 			throw new RuntimeException(e);
 		}
 //		 * 2. 검증
-		Map<String, String> errors = new LinkedHashMap<>();
+		Map<String, List<String>> errors = new LinkedHashMap<>();
 		req.setAttribute("errors", errors);
-		boolean valid = validate(member, errors);
+		boolean valid = ValidateUtils.validate(member, errors);
 		String viewName = null;
 		if(errors.isEmpty()) {
 //		 * 3. 로직 사용(model 확보)

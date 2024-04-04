@@ -29,7 +29,7 @@ public class BuyerVO implements Serializable{
 	private String buyerCharger;
 	private String buyerTelext;
 	
-	//jpa의 구조를 반영해서 비슷하게 사용하려고 
+	//jpa의 구조를 반영해서 비슷하게 사용하려고
 	private LprodVO lprod; 
 	private int prodCount;
 	
