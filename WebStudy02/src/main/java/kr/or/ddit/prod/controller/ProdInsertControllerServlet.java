@@ -49,7 +49,7 @@ public class ProdInsertControllerServlet extends HttpServlet{
 		//		* 1. 요청 접수, 분석
 		req.setCharacterEncoding("UTF-8");
 		ProdVO prod = new ProdVO(); // command Object
-		
+		 
 		req.setAttribute("member", prod);
 		Map<String, String[]> parameterMap = req.getParameterMap();
 		
@@ -74,12 +74,13 @@ public class ProdInsertControllerServlet extends HttpServlet{
 				viewName = "redirect:/prod/prodDetail.do?what="+prod.getProdId();
 				break;
 			}
-//		 * 4. scope 를 이용해 model 공유
+//		 4. scope 를 이용해 model 공유
 		}else {
 			viewName = "prod/prodForm";
 		}
-//		 * 5. view 결정
-//		 * 6. view 로 이동(flow control)
+//		 5. view 결정
+//		 6. view 로 이동(flow control)
+		
 		new ViewResolverComposite().resolveView(viewName, req, resp);
 	}
 }

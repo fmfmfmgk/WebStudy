@@ -12,11 +12,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import kr.or.ddit.validate.groups.DeleteGroup;
 import kr.or.ddit.validate.groups.InsertGroup;
-import kr.or.ddit.validate.groups.UpdateGroup;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -69,7 +66,12 @@ public class MemberVO implements Serializable{
 	private boolean memDelete;
 	
 	//구매기록 set(중복을 허용하지 않겠다)
-	private Set<CartVO> cartList; // Has Many
+	@JsonIgnore
+	private transient Set<CartVO> cartList; // Has Many
+	
+//	사용자 역할 정보
+	private String memRole;
+	
 }
 
 

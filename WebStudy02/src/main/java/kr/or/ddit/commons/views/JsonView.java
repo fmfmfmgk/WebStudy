@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @WebServlet("/jsonView.do")
 public class JsonView extends HttpServlet{
@@ -30,7 +32,11 @@ public class JsonView extends HttpServlet{
          Object value = req.getAttribute(name);
          targetMap.put(name, value);
       }
-      ObjectMapper mapper = new ObjectMapper();
+      
+      ObjectMapper mapper = new ObjectMapper()
+    		   .registerModule(new JavaTimeModule()); // new module, NOT JSR310Module
+      
+      mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
       try(
          PrintWriter out = resp.getWriter();
       ){

@@ -1,21 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<jsp:include page="/WEB-INF/includee/prescript.jsp"/>
-<!-- Spring의 flashMapManager를 통해 해결 -->
-<c:if test="${not empty message}">
-	<script type="text/javascript">
-		alert("${message}");
-	</script>
-	<c:remove var="message" scope="session"/>
-</c:if>
-</head>
-<body>
+
 <h4>${member.memName}님의 마이페이지</h4>
 <c:set value="${member}" var="member"></c:set>
 <table class="table table-bordered">
@@ -145,14 +131,9 @@
   </div>
 </div>
 
-
-
 <script type="text/javascript">
 	const $updateBtn = $("#updateBtn").on("click", function(){
 		let who = $(this).data("who");
 		location.href = `${pageContext.request.contextPath}/member/memberUpdate.do`;
 	});
 </script>
-<jsp:include page="/WEB-INF/includee/postScript.jsp"/>
-</body>
-</html>

@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<jsp:include page="/WEB-INF/includee/prescript.jsp"/>
 <style>
 	tr[data-mem-id]{
 		cursor: pointer;
@@ -15,8 +9,6 @@
 		background-color: green;	
 	}
 </style>
-</head>
-<body data-path="${pageContext.request.contextPath}">
 <a href="${pageContext.request.contextPath}/member/memberInsert.do">회원가입하기</a>
 <table class="table table-bordered table-striped">
 	<thead class="table-dark">
@@ -137,6 +129,3 @@
   </div>
 </div>
 <script src="${pageContext.request.contextPath}/resources/js/app/member/memberList.js"></script>
-<jsp:include page="/WEB-INF/includee/postScript.jsp"/>
-</body>
-</html>

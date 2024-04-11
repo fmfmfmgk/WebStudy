@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
 import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.vo.MemberVOWrapper;
 
 @WebServlet("/mypage.do")
 public class MypageControllerServlet extends HttpServlet{
@@ -19,21 +20,13 @@ public class MypageControllerServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
-		if(session.isNew()) {
-			resp.sendError(400);
-			return;
-		}
 		
 		String viewName = null;
-		MemberVO authMember = (MemberVO) session.getAttribute("authMember");
-		if(authMember==null) {
-			viewName = "redirect:/login/loginForm.jsp";
-		}else {
-			MemberVO member = service.retrieveMember(authMember.getMemId());
-			req.setAttribute("member", member);
-			viewName ="/WEB-INF/views/member/mypage.jsp";
-		}
+		MemberVOWrapper principal = (MemberVOWrapper)req.getUserPrincipal();
+		
+		MemberVO member = service.retrieveMember(principal.getName());
+		req.setAttribute("member", member);
+		viewName ="member/mypage.jsp";
 		
 		if(viewName.startsWith("redirect:")) {
 			String location = viewName.replace("redirect:", req.getContextPath());

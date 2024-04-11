@@ -31,10 +31,10 @@
 		    , MEM_HOMETEL, MEM_COMTEL, MEM_HP          
 		    , MEM_MAIL, MEM_JOB, MEM_LIKE              
 		    , MEM_MEMORIAL, TO_CHAR(MEM_MEMORIALDAY, 'YYYY-MM-DD') MEM_MEMORIALDAY, MEM_MILEAGE
-		    , MEM_DELETE, CART_NO, CART_PROD                               
+		    , MEM_DELETE, MEM_ROLE, CART_NO, CART_PROD                               
 		    , PROD_NAME, CART_QTY
 		    FROM MEMBER LEFT OUTER JOIN CART_VIEW ON (MEM_ID = CART_MEMBER)
-		WHERE MEM_ID = 'a001'
+		WHERE MEM_ID = #{memId}
 	</select>
 	
 	<insert id="insertMember" parameterType="MemberVO">
@@ -87,6 +87,7 @@
 		SELECT MEM_ID, MEM_PASS, MEM_NAME
 				, MEM_HP, MEM_MAIL
 				, MEM_DELETE
+				, MEM_ROLE
 	     FROM MEMBER
 	     WHERE MEM_ID = #{memId} AND MEM_DELETE IS NULL
 	</select>

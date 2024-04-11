@@ -53,7 +53,11 @@ public class ProdDAOImpl implements ProdDAO{
 
 	@Override
 	public int updateProd(ProdVO prod) {
-		// TODO Auto-generated method stub
-		return 0;
+		try (
+				SqlSession session = factory.openSession();
+			){
+				int cnt = session.getMapper(ProdDAO.class).updateProd(prod);
+				return cnt;
+			}
 	}
 }

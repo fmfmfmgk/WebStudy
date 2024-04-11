@@ -51,7 +51,6 @@ public class ConnectionFactory_JDBC_HikariCP {
 			//쓰지 않아도 자동으로 되지만 mybatis와 차이점을 보기위해
 			config.setAutoCommit(true);
 			
-			
 			config.setMaximumPoolSize(5);
 			
 			//최초의 만드는 connection갯수 지정

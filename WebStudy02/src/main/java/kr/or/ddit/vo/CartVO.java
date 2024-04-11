@@ -1,5 +1,6 @@
 package kr.or.ddit.vo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import lombok.Data;
@@ -7,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(of={"cartNo","cartProd"})
-public class CartVO {
+public class CartVO implements Serializable{
 	private String cartMember;
 	private String cartNo;
 	private String cartProd;

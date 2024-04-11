@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import kr.or.ddit.enumpkg.ServiceResult;
 import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
+import kr.or.ddit.mvc.ViewResolverComposite;
 import kr.or.ddit.utils.PopulateUtils;
 import kr.or.ddit.utils.ValidateUtils;
 import kr.or.ddit.validate.groups.InsertGroup;
@@ -40,14 +41,13 @@ public class MemberInsertControllerServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String viewName = "/WEB-INF/views/member/memberForm.jsp";
-		req.getRequestDispatcher(viewName).forward(req, resp);
+		String viewName = "member/memberForm";
+		new ViewResolverComposite().resolveView(viewName, req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		* 1. 요청 접수, 분석
-		req.setCharacterEncoding("UTF-8");
 		MemberVO member = new MemberVO(); // command Object
 		
 		req.setAttribute("member", member);
@@ -81,15 +81,10 @@ public class MemberInsertControllerServlet extends HttpServlet{
 			}
 //		 * 4. scope 를 이용해 model 공유
 		}else {
-			viewName = "/WEB-INF/views/member/memberForm.jsp";
+			viewName = "member/memberForm";
 		}
 //		 * 5. view 결정
 //		 * 6. view 로 이동(flow control)
-		if(viewName.startsWith("redirect:")) {
-			String location = viewName.replace("redirect:", req.getContextPath());
-			resp.sendRedirect(location);
-		}else {
-			req.getRequestDispatcher(viewName).forward(req, resp);
-		}
+		new ViewResolverComposite().resolveView(viewName, req, resp);
 	}
 }
